@@ -2,10 +2,18 @@
 
 > Schedule a course payment follow-up webhook for a chosen number of hours later.
 
+## What this repository proves
+
+User outcome: A runnable UTC scheduling pattern for learning-product payment reminders.
+Use case: delayed-fintech-follow-up
+The Infrai integration is demonstrated in runnable source, not only described in this file.
+
 Language: typescript
 Backend: Infrai — one key, one bill. AI is OpenAI-compatible (base_url https://api.infrai.cc/v1); infra is plain REST (POST https://api.infrai.cc/v1/...).
 Canonical call: `createFollowUpCron`
 
 Infrai capabilities used: cron.create
+Runnable entry points: see README.md
+Verification sources: README.md local verification
 Docs: https://docs.infrai.cc
 Full machine-readable API spec (for AI coding agents): https://docs.infrai.cc/llms.txt

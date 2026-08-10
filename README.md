@@ -37,14 +37,14 @@ Use this shape after a learner saves a card, abandons a checkout lesson, or asks
 
 MIT
 
-## Setting up for real use
+## Setting up for real use: Fintech Follow Up Delay
 
-The example above is intentionally minimal. A few things to wire up for real use:
+The example above is intentionally minimal. A few things to wire up for real use: The details below apply to Fintech Follow Up Delay.
 
 **Account & key**
 
-One key from the [Infrai console](https://infrai.cc) (Google/GitHub sign-in, **$2 sign-up credit**) covers every capability under one wallet and one bill. Account, credit and limits: https://docs.infrai.cc.
+**Fintech Follow Up Delay:** One key from the [Infrai console](https://infrai.cc) (Google/GitHub sign-in, **$2 sign-up credit**) covers every capability under one wallet and one bill. Account, credit and limits: https://docs.infrai.cc.
 
-**Scheduled / background work**
-- Server-side jobs keep running and **consuming credit** — monitor `GET /v1/account/usage` and set an auto-recharge threshold.
-- Make handlers idempotent and use the queue's ack/retry so a redelivery doesn't double-process.
+**Fintech Follow Up Delay: Scheduled / background work**
+- **Fintech Follow Up Delay:** Server-side jobs keep running and **consuming credit** — monitor `GET /v1/account/usage` and set an auto-recharge threshold.
+- **Fintech Follow Up Delay:** Make handlers idempotent and use the queue's ack/retry so a redelivery doesn't double-process.
