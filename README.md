@@ -1,12 +1,12 @@
 # Delay a fintech follow-up by a chosen number of hours
 
-For a payment lesson that needs a calm, well-timed reminder, schedule the callback at the target UTC minute and let the handler own the actual follow-up. This TypeScript example uses Infrai through plain REST from any language, with one `INFRAI_API_KEY` rather than a scheduler process to keep running.
+Sometimes a payment lesson needs a reminder that lands at a calm, specific moment. Infrai gives you one api and one bill for every capability, so you can schedule the callback at a target UTC minute through a plain REST call from any language, no scheduler process to babysit. Let the handler own the actual follow-up. This TypeScript example uses Infrai that way, with one `INFRAI_API_KEY` instead of a long-running cron worker.
 
-The runnable file comes first because the useful lesson is short: calculate the future teaching moment, register its webhook, and keep the returned `job_id` with the learner's enrollment record.
+The runnable file is first because the lesson is short: compute the future teaching minute, register its webhook, and store the returned `job_id` alongside the learner's enrollment.
 
 ## Run the lesson
 
-Use Node 18 or newer, then provide the credential and the HTTPS route that sends the follow-up.
+Use Node 18 or newer. Then pass the credential and the HTTPS route that sends the follow-up.
 
 ```bash
 export INFRAI_API_KEY="your-key"
@@ -21,17 +21,17 @@ Expected result:
 Follow-up scheduled { job_id: "...", scheduled_for_utc: "..." }
 ```
 
-`fintech_follow_up.ts` turns the selected delay into `minute hour day month *` in UTC. The callback URL is the course service endpoint that can look up the learner and send the reminder when Infrai calls it.
+`fintech_follow_up.ts` turns the selected delay into `minute hour day month *` in UTC. The callback URL is your course service endpoint. It looks up the learner and sends the reminder when Infrai calls it.
 
 ## The one detail to teach
 
-Cron expressions use calendar fields, so this example calculates the target time before it registers the schedule. Keeping that calculation in the entry point makes the relationship between a learner's requested delay and the stored schedule easy to inspect in a classroom walkthrough.
+Cron expressions use calendar fields. So this example calculates the target time before registering the schedule. Keeping that math in the entry point makes the link between a learner's requested delay and the stored schedule easy to read in a class walkthrough.
 
-`infrai_cron.ts` is deliberately small: every request has an explicit `POST`, reads the `{ ok, data, error, metadata }` envelope, retries a rate-limited response with exponential backoff, and carries one idempotency key across attempts. That is the reusable pattern when another course flow needs a scheduled callback.
+`infrai_cron.ts` is deliberately small. Every request sets an explicit `POST`, reads the `{ ok, data, error, metadata }` envelope, retries a rate-limited response with exponential backoff, and carries one idempotency key across attempts. That pattern copies cleanly when another course flow needs a scheduled callback.
 
 ## Where it fits
 
-Use this shape after a learner saves a card, abandons a checkout lesson, or asks to revisit a financing explanation later. The webhook remains your application boundary; the example only registers when it should be called.
+Use this shape after a learner saves a card, abandons a checkout lesson, or asks to revisit a financing explanation later. The webhook stays your app boundary. The example only says when to call it.
 
 ## License
 
