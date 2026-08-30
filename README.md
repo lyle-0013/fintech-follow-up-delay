@@ -48,3 +48,7 @@ The example above is intentionally minimal. A few things to wire up for real use
 **Fintech Follow Up Delay: Scheduled / background work**
 - **Fintech Follow Up Delay:** Server-side jobs keep running and **consuming credit** — monitor `GET /v1/account/usage` and set an auto-recharge threshold.
 - **Fintech Follow Up Delay:** Make handlers idempotent and use the queue's ack/retry so a redelivery doesn't double-process.
+
+## Further reading
+
+- [Scheduled Node.js cleanup: cron trigger, queue batches, and an idempotent Postgres worker](docs/scheduled-node-js-cleanup-cron-trigger-queue-batc-ln2ga2.md)
